@@ -107,6 +107,5 @@ btnDelete.addEventListener('click', async () => {
     loadNotes();
   }
 });
-
 // Start loading notes!
 loadNotes();
