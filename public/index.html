@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Note Test</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- NOTE LIST -->
+    <aside class="sidebar">
+      <h2>Note</h2>
+      <button id="btn-new" class="btn primary">+ New note here!</button>
+      <ul id="note-list"></ul>
+    </aside>
+
+    <!-- VIEW SPACE -->
+    <main class="editor-area">
+      <div class="toolbar">
+        <input type="text" id="note-title" placeholder="Tên tệp ghi chú (ví dụ: bai-hoc-1)">
+        <div class="actions">
+          <button id="btn-save" class="btn success">Save</button>
+          <button id="btn-delete" class="btn danger">Remove</button>
+        </div>
+      </div>
+
+      <div class="split-view">
+        <div class="pane">
+          <label>Markdown edit here:</label>
+          <textarea id="markdown-input" placeholder="# Type here bro!..."></textarea>
+        </div>
+        <div class="pane">
+          <label>Preview:</label>
+          <div id="html-preview" class="preview-box"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add markdown lib-->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
