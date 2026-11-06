@@ -1,44 +1,86 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Markdown Note Test</title>
+  
+  <!-- Add Tailwind CSS and Typography plugin to make markdown look beautiful -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="app-container">
-    <!-- NOTE LIST -->
-    <aside class="sidebar">
-      <h2>Note</h2>
-      <button id="btn-new" class="btn primary">+ New note here!</button>
-      <ul id="note-list"></ul>
+<body class="bg-gray-100 text-gray-800 h-screen flex flex-col font-sans overflow-hidden">
+
+  <!-- TOP TOOLBAR: Menu button, Title input, Save & Delete buttons -->
+  <header class="bg-white border-b border-gray-200 p-3 flex items-center justify-between shadow-sm z-30">
+    
+    <div class="flex items-center gap-3 w-full md:w-auto">
+      <!-- Mobile menu button -->
+      <button id="btn-toggle-sidebar" class="md:hidden p-2 text-gray-600 hover:text-gray-900 rounded bg-gray-100">
+        ☰
+      </button>
+      
+      <!-- Input for note title -->
+      <input 
+        type="text" 
+        id="note-title" 
+        placeholder="Note title (e.g., lesson-1)" 
+        class="flex-1 md:w-64 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+      >
+    </div>
+
+    <!-- Action buttons -->
+    <div class="actions flex gap-2 ml-2">
+      <button id="btn-save" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition-colors">
+        Save
+      </button>
+      <button id="btn-delete" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition-colors">
+        Remove
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN AREA: Sidebar + Work space -->
+  <div class="flex-1 flex overflow-hidden relative">
+
+    <!-- SIDEBAR: Hidden on mobile by default, visible on desktop -->
+    <aside id="sidebar" class="hidden md:flex flex-col w-64 bg-gray-800 text-white h-full absolute md:relative z-20 transition-all shadow-xl md:shadow-none">
+      <div class="p-4 border-b border-gray-700">
+        <button id="btn-new" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors">
+          + New note here!
+        </button>
+      </div>
+      <!-- Note list container -->
+      <ul id="note-list" class="flex-1 overflow-y-auto p-2 space-y-1"></ul>
     </aside>
 
-    <!-- VIEW SPACE -->
-    <main class="editor-area">
-      <div class="toolbar">
-        <input type="text" id="note-title" placeholder="Tên tệp ghi chú (ví dụ: bai-hoc-1)">
-        <div class="actions">
-          <button id="btn-save" class="btn success">Save</button>
-          <button id="btn-delete" class="btn danger">Remove</button>
-        </div>
+    <!-- DARK OVERLAY: Click to close sidebar on mobile -->
+    <div id="sidebar-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-10 md:hidden"></div>
+
+    <!-- EDITOR AREA: Stack on mobile (flex-col), Side-by-side on desktop (md:flex-row) -->
+    <main class="flex-1 flex flex-col md:flex-row bg-white">
+      
+      <!-- Left pane: Markdown Input -->
+      <div class="flex-1 flex flex-col border-b md:border-b-0 md:border-r border-gray-200">
+        <label class="bg-gray-200 px-4 py-2 font-bold text-gray-700 text-sm">Markdown edit here:</label>
+        <textarea 
+          id="markdown-input" 
+          placeholder="# Type here bro!..."
+          class="flex-1 p-4 resize-none focus:outline-none font-mono text-gray-800 bg-gray-50"
+        ></textarea>
       </div>
 
-      <div class="split-view">
-        <div class="pane">
-          <label>Markdown edit here:</label>
-          <textarea id="markdown-input" placeholder="# Type here bro!..."></textarea>
-        </div>
-        <div class="pane">
-          <label>Preview:</label>
-          <div id="html-preview" class="preview-box"></div>
-        </div>
+      <!-- Right pane: HTML Preview -->
+      <div class="flex-1 flex flex-col">
+        <label class="bg-gray-200 px-4 py-2 font-bold text-gray-700 text-sm">Preview:</label>
+        <!-- The "prose" class from Tailwind makes the HTML look like a real article -->
+        <div id="html-preview" class="flex-1 p-4 overflow-y-auto prose max-w-none bg-white"></div>
       </div>
+
     </main>
   </div>
 
-  <!-- Add markdown lib-->
+  <!-- Add markdown lib -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="main.js"></script>
 </body>
