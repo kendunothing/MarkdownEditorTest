@@ -41,5 +41,26 @@ Một ứng dụng web đơn giản giúp bạn ghi chú bằng cú pháp Markdo
  (Markdown)     (HTML sinh bởi marked)                                         (Hệ thống ghi tệp ra ổ cứng)
 
 ```
-External links:
+
+## I made this sh*t using phone btw :))
+### Code 
+![i1](img/i9.jpg)
+![i2](img/i1.jpg)
+![i3](img/i2.jpg)
+![i4](img/i3.jpg)
+![i5](img/i4.jpg)
+![i6](img/i5.jpg)
+### Web UI
+![i7](img/i13.jpg)
+![i8](img/i12.jpg)
+![i9](img/i11.jpg)
+### Push code
+![i10](img/i10.jpg)
+![i11](img/i14.jpg)
+### Github
+![i12](img/i8.jpg)
+![i13](img/i7.jpg)
+![i13](img/i6.jpg)
+
+## External links:
 https://roadmap.sh/projects/markdown-note-taking-app
